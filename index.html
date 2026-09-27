@@ -1,0 +1,690 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#121A2E">
+<meta property="og:title" content="雅迪 MODERN · 新时尚复古三轮篷车设计提案">
+<meta property="og:description" content="复古是记忆，摩登是态度。— DAFAR DESIGN 大方工业设计">
+<meta property="og:image" content="cover.jpg">
+<title>雅迪 MODERN · 新时尚复古三轮篷车设计提案</title>
+<style>/* ===== 新时尚复古 · 雅迪三轮篷车设计提案 — 视觉系统 ===== */
+:root{
+  --ink:#10141D; --navy:#121A2E; --navy2:#1A2440; --navy3:#26345A;
+  --cream:#F6F3EE; --paper:#ECE8E1; --sand:#DCD5C9;
+  --blue:#6B87CB; --blue-d:#48639F; --blue-l:#A9BAE3;
+  --obsidian:#1C1E2A; --porcelain:#F0EEF3;
+  --wood:#7C574F; --linen:#DCCEB3; --leather:#8A5A3E;
+  --gold:#B8955A; --gold-l:#D9BE8A;
+  --serif:'Noto Serif SC','Songti SC',serif;
+  --sans:'Noto Sans SC','Microsoft YaHei',sans-serif;
+  --lat:'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;
+  --grot:Inter,'Noto Sans SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#07090E}
+body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+#deck{zoom:var(--z,1);width:1920px;margin:0 auto}
+.pg{position:relative;width:1920px;height:1080px;overflow:hidden;isolation:isolate;margin-bottom:var(--gap,18px)}
+body.print .pg,body.shot .pg{margin:0}
+.pg.cream{background:var(--cream)}
+.pg.paper{background:var(--paper)}
+.pg.navy{background:var(--navy);color:#EEE8DD}
+.pg.ink{background:var(--ink);color:#EEE8DD}
+
+/* 纸纹颗粒 */
+.pg::after{content:'';position:absolute;inset:0;z-index:90;pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.22'/></svg>");
+  mix-blend-mode:multiply;opacity:.55}
+.pg.navy::after,.pg.ink::after{mix-blend-mode:screen;opacity:.10}
+
+/* ---------- 页眉页脚 ---------- */
+.hd,.ft{position:absolute;left:88px;right:88px;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--grot);font-size:12px;letter-spacing:.32em;text-transform:uppercase;z-index:80}
+.hd{top:46px}.ft{bottom:40px}
+.hd span,.ft span{opacity:.5}
+.hd b,.ft b{font-weight:500;opacity:.8}
+.hd .mid{position:absolute;left:50%;transform:translateX(-50%)}
+.ft .pn{font-family:var(--lat);font-size:15px;letter-spacing:.16em;opacity:.65}
+.hd i.bar{display:inline-block;width:34px;height:1px;background:currentColor;opacity:.45;vertical-align:middle;margin:0 14px}
+
+/* ---------- 字体层级 ---------- */
+.kicker{font-family:var(--grot);font-size:13px;letter-spacing:.42em;text-transform:uppercase;opacity:.6}
+.kicker.gold{color:var(--gold);opacity:1}
+.navy .kicker.gold,.ink .kicker.gold{color:var(--gold-l)}
+.t-mega{font-family:var(--serif);font-weight:700;font-size:168px;line-height:1;letter-spacing:.02em}
+.t-xl{font-family:var(--serif);font-weight:700;font-size:92px;line-height:1.08;letter-spacing:.01em}
+.t-l{font-family:var(--serif);font-weight:700;font-size:64px;line-height:1.14}
+.t-m{font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.25}
+.t-s{font-family:var(--serif);font-weight:600;font-size:27px;line-height:1.35}
+.t-xs{font-weight:500;font-size:19px;line-height:1.5;letter-spacing:.03em}
+.it{font-family:var(--lat);font-style:italic;font-weight:400;letter-spacing:.01em}
+.lat{font-family:var(--lat)}
+.p{font-size:17px;line-height:1.95;font-weight:300;opacity:.72}
+.p.l{font-size:20px;line-height:1.9}
+.p.s{font-size:15px;line-height:1.85}
+.cap{font-size:13px;line-height:1.7;letter-spacing:.08em;opacity:.55}
+.num{font-family:var(--lat);font-weight:400;line-height:1}
+.gold{color:var(--gold)}
+.navy .gold,.ink .gold{color:var(--gold-l)}
+.bl{color:var(--blue-d)}
+.navy .bl,.ink .bl{color:var(--blue-l)}
+.hair{height:1px;background:currentColor;opacity:.2}
+.hair.g{background:var(--gold);opacity:.7}
+.abs{position:absolute}
+.flex{display:flex}
+.center{text-align:center}
+
+/* ---------- 车辆 / 投影 ---------- */
+.car{position:absolute;z-index:20;display:block;pointer-events:none;user-select:none}
+.shd{position:absolute;z-index:19;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(12,16,32,.42) 0%,rgba(12,16,32,.20) 38%,rgba(12,16,32,0) 70%);filter:blur(5px)}
+.navy .shd,.ink .shd{background:radial-gradient(ellipse at center,rgba(0,0,0,.75) 0%,rgba(0,0,0,.35) 40%,rgba(0,0,0,0) 72%)}
+.refl{position:absolute;z-index:18;transform:scaleY(-1);opacity:.14;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,0) 32%);mask-image:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,0) 32%)}
+
+/* ---------- 细节裁切 ---------- */
+.crop{position:relative;overflow:hidden;background:#EFEDEA}
+.crop img{position:absolute;max-width:none;display:block}
+.crop.round{border-radius:50%}
+.navy .crop,.ink .crop{background:#E9E7E4}
+.crop.dk{background:#1D2640}
+
+/* ---------- 标注 ---------- */
+svg.ov{position:absolute;inset:0;z-index:30;pointer-events:none;overflow:visible}
+.co{position:absolute;z-index:31;width:250px}
+.co.r{text-align:right}
+.co h5{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1.3;margin-bottom:4px}
+.co p{font-size:13px;line-height:1.65;opacity:.6;font-weight:300}
+.co .n{font-family:var(--lat);font-size:13px;letter-spacing:.14em;color:var(--gold);display:block;margin-bottom:5px}
+.navy .co .n,.ink .co .n{color:var(--gold-l)}
+
+/* ---------- 卡片 ---------- */
+.card{position:absolute;border-top:1px solid rgba(16,20,29,.25);padding-top:26px}
+.navy .card,.ink .card{border-top-color:rgba(238,232,221,.25)}
+
+/* ---------- 动效（屏幕浏览时） ---------- */
+body.live [data-a]{opacity:0;transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d,0) * 1ms)}
+body.live [data-a=up]{transform:translateY(36px)}
+body.live [data-a=left]{transform:translateX(-60px)}
+body.live [data-a=right]{transform:translateX(60px)}
+body.live [data-a=zoom]{transform:scale(1.04)}
+body.live .pg.on [data-a]{opacity:1;transform:none}
+
+@page{size:1920px 1080px;margin:0}
+@media print{html,body{background:none}.pg{margin:0;break-after:page}#deck{zoom:1}}
+
+/* ---------- 在线浏览（桌面 / 手机） ---------- */
+body.live{padding:8px 0}
+body.live.port{--gap:10px}
+@media (pointer:coarse){html:has(body.live:not(.port)){scroll-snap-type:y mandatory}body.live .pg{scroll-snap-align:center}}
+#ui{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:999;display:flex;align-items:center;gap:4px;
+  padding:5px;border-radius:999px;background:rgba(18,26,46,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(217,190,138,.35);font:500 12px/1 var(--grot);letter-spacing:.14em;color:#EEE8DD}
+#ui span{padding:0 12px;font-family:var(--lat);font-size:13px}
+#ui a{color:var(--navy);background:var(--gold-l);text-decoration:none;padding:9px 14px;border-radius:999px;letter-spacing:.08em;min-height:32px;display:flex;align-items:center}
+#tip{position:fixed;left:50%;top:max(18px,env(safe-area-inset-top));transform:translateX(-50%);z-index:999;padding:10px 18px;border-radius:999px;
+  background:rgba(18,26,46,.85);color:#EEE8DD;font:400 13px/1.2 var(--sans);letter-spacing:.06em;white-space:nowrap;transition:opacity .8s;display:none}
+body.port #tip{display:block}
+#tip.off{opacity:0;pointer-events:none}
+</style></head>
+<body><div id="deck">
+<section class="pg navy" id="p1">
+  
+  <div class="abs" style="left:880px;top:-240px;width:1180px;height:1180px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#2A3A66 0%,#1B2646 45%,rgba(18,26,46,0) 70%)"></div>
+  <div class="abs" style="left:1010px;top:-110px;width:920px;height:920px;border-radius:50%;border:1px solid rgba(217,190,138,.35)"></div>
+  <div class="abs" style="left:1080px;top:-40px;width:780px;height:780px;border-radius:50%;border:1px solid rgba(217,190,138,.16)"></div>
+  <div class="abs" style="left:0;right:0;top:900px;bottom:0;background:linear-gradient(180deg,#0E1526 0%,#0B111F 100%)"></div>
+  <div class="abs" style="left:0;right:0;top:900px;height:1px;background:linear-gradient(90deg,rgba(217,190,138,0),rgba(217,190,138,.5) 40%,rgba(217,190,138,.5) 70%,rgba(217,190,138,0))"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>Design Proposal · 2026</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:230px;width:760px">
+    <div class="kicker gold" data-a="up">Modern Retro Micro-Mobility</div>
+    <div class="t-mega" data-a="up" style="--d:120;margin-top:34px">新时尚<br>复古</div>
+    <div class="it" data-a="up" style="--d:240;font-size:36px;margin-top:30px;color:var(--gold-l)">Retro at heart, modern in motion.</div>
+    <div class="hair g" data-a="left" style="--d:340;width:120px;margin:40px 0 30px"></div>
+    <div class="t-xs" data-a="up" style="--d:420;opacity:.86">雅迪 MODERN 复古优雅三轮篷车 · 造型设计提案</div>
+    <div class="p" data-a="up" style="--d:500;margin-top:8px">方案 A 经典旅行 Classic Voyage　/　方案 B 幻彩律动 Chroma Pulse</div>
+  </div>
+  <div class="shd" style="left:733.9px;top:866.509667673716px;width:1062.2px;height:63.2595166163142px"></div><img decoding="async" class="refl" src="assets/sideA.webp" style="left:700px;top:898px;width:1130px"><img decoding="async" class="car " data-a="right" style="--d:200;left:700px;top:155.7703927492447px;width:1130px" src="assets/sideA.webp" alt="">
+  <div class="ft"><span>Yadea × Dafar Design</span><span class="pn">01 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg cream" id="p2">
+  <div class="abs" style="left:1180px;top:0;bottom:0;right:0;background:var(--paper)"></div>
+  <div class="abs" style="left:1260px;top:250px;width:760px;height:760px;border-radius:50%;border:1px solid rgba(184,149,90,.45)"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>Contents</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:170px">
+    <div class="kicker gold" data-a="up">Contents</div>
+    <div class="t-xl" data-a="up" style="--d:100;margin-top:22px">目录</div>
+  </div>
+  <div class="abs" style="left:88px;top:420px;width:1000px">
+    <div data-a="up" style="--d:200;display:grid;grid-template-columns:110px 1fr 260px;align-items:baseline;border-top:1px solid rgba(16,20,29,.16);padding:20px 0 18px">
+      <span class="num gold" style="font-size:34px">01</span>
+      <span><span class="t-s">项目洞察</span><span class="it" style="font-size:21px;opacity:.5;margin-left:16px">Insight</span></span>
+      <span class="cap" style="text-align:right">背景 · 用户</span></div><div data-a="up" style="--d:280;display:grid;grid-template-columns:110px 1fr 260px;align-items:baseline;border-top:1px solid rgba(16,20,29,.16);padding:20px 0 18px">
+      <span class="num gold" style="font-size:34px">02</span>
+      <span><span class="t-s">设计理念</span><span class="it" style="font-size:21px;opacity:.5;margin-left:16px">Concept</span></span>
+      <span class="cap" style="text-align:right">理念 · 情绪板 · 色彩材质 · 造型语言</span></div><div data-a="up" style="--d:360;display:grid;grid-template-columns:110px 1fr 260px;align-items:baseline;border-top:1px solid rgba(16,20,29,.16);padding:20px 0 18px">
+      <span class="num gold" style="font-size:34px">03</span>
+      <span><span class="t-s">方案 A 经典旅行</span><span class="it" style="font-size:21px;opacity:.5;margin-left:16px">Classic Voyage</span></span>
+      <span class="cap" style="text-align:right">主视觉 · 细节 · 个性化前脸</span></div><div data-a="up" style="--d:440;display:grid;grid-template-columns:110px 1fr 260px;align-items:baseline;border-top:1px solid rgba(16,20,29,.16);padding:20px 0 18px">
+      <span class="num gold" style="font-size:34px">04</span>
+      <span><span class="t-s">方案 B 幻彩律动</span><span class="it" style="font-size:21px;opacity:.5;margin-left:16px">Chroma Pulse</span></span>
+      <span class="cap" style="text-align:right">主视觉 · 灯光细节</span></div><div data-a="up" style="--d:520;display:grid;grid-template-columns:110px 1fr 260px;align-items:baseline;border-top:1px solid rgba(16,20,29,.16);padding:20px 0 18px">
+      <span class="num gold" style="font-size:34px">05</span>
+      <span><span class="t-s">三视图与对比</span><span class="it" style="font-size:21px;opacity:.5;margin-left:16px">Views</span></span>
+      <span class="cap" style="text-align:right">A / B 三视图 · 前后对比</span></div><div data-a="up" style="--d:600;display:grid;grid-template-columns:110px 1fr 260px;align-items:baseline;border-top:1px solid rgba(16,20,29,.16);padding:20px 0 18px">
+      <span class="num gold" style="font-size:34px">06</span>
+      <span><span class="t-s">场景与总结</span><span class="it" style="font-size:21px;opacity:.5;margin-left:16px">Scenes</span></span>
+      <span class="cap" style="text-align:right">生活场景 · 方案对比</span></div>
+  </div>
+  <div class="shd" style="left:1346.4072727272728px;top:981.2px;width:514.0945454545454px;height:54.400000000000006px"></div><img decoding="async" class="car " data-a="up" style="--d:300;left:1330px;top:370px;width:546.9090909090909px" src="assets/frontA.webp" alt="">
+  <div class="ft"><span>Contents</span><span class="pn">02 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg cream" id="p3">
+  <div class="abs" style="left:1260px;top:230px;width:640px;height:800px;border-radius:320px 320px 0 0;background:linear-gradient(180deg,#E2DDD4 0%,#D7D0C3 100%)"></div>
+  <div class="abs" style="left:1290px;top:260px;width:580px;height:770px;border-radius:290px 290px 0 0;border:1px solid rgba(184,149,90,.5)"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>01 · Insight</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:150px;width:1060px">
+    <div class="kicker gold" data-a="up">01 · Project Background</div>
+    <div class="t-l" data-a="up" style="--d:100;margin-top:22px">为城市短途，<br>造一间有温度的「移动小房子」</div>
+  </div>
+  <div class="card" data-a="up" style="--d:260;left:88px;top:560px;width:320px">
+    <div class="num gold" style="font-size:54px">01</div>
+    <div class="t-s" style="margin-top:22px">高频短途 <span class="it" style="font-size:18px;opacity:.5;font-weight:400">Short Trips</span></div>
+    <div class="p s" style="margin-top:14px">买菜、接送、社区通勤——城市里大量出行发生在家门口几公里内。三轮篷车遮风挡雨、易停放、上手门槛低，是两轮车与汽车之间的「舒适中间态」。</div></div><div class="card" data-a="up" style="--d:370;left:448px;top:560px;width:320px">
+    <div class="num gold" style="font-size:54px">02</div>
+    <div class="t-s" style="margin-top:22px">审美升级 <span class="it" style="font-size:18px;opacity:.5;font-weight:400">Aesthetics</span></div>
+    <div class="p s" style="margin-top:14px">用户不再满足于「能用」，更在意「好看、有态度」。复古双色、奶油质感、镀铬点缀等审美正在年轻与中年人群中回潮。</div></div><div class="card" data-a="up" style="--d:480;left:808px;top:560px;width:320px">
+    <div class="num gold" style="font-size:54px">03</div>
+    <div class="t-s" style="margin-top:22px">情绪价值 <span class="it" style="font-size:18px;opacity:.5;font-weight:400">Emotion</span></div>
+    <div class="p s" style="margin-top:14px">车是生活方式的表达：可以拍照、可以分享、可以个性化。一辆让人每天看到都会心一笑的车，本身就是购买理由。</div></div>
+  <div class="shd" style="left:1345.7861818181818px;top:874.8px;width:468.42763636363634px;height:47.6px"></div><img decoding="async" class="car " data-a="up" style="--d:300;left:1330.8363636363636px;top:340px;width:498.3272727272727px" src="assets/frontB.webp" alt="">
+  <div class="ft"><span>Insight · Background</span><span class="pn">03 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg paper" id="p4">
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>01 · Insight</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:150px">
+    <div class="kicker gold" data-a="up">01 · Target Users</div>
+    <div class="t-l" data-a="up" style="--d:100;margin-top:22px">三类核心人群</div>
+    <div class="p l" data-a="up" style="--d:160;margin-top:14px">他们的共同点：出行半径不大，但对生活品质有要求。</div>
+  </div>
+  <div data-a="up" style="--d:250;position:absolute;left:88px;top:420px;width:560px;height:560px;background:var(--cream);padding:40px 44px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div class="num gold" style="font-size:16px;letter-spacing:.2em">PERSONA 01</div>
+      <div class="t-s" style="margin-top:16px">精致通勤的都市女性</div><div class="it" style="font-size:20px;opacity:.55;margin-top:4px">The Urban Muse</div></div>
+      <div class="crop round" style="width:120px;height:120px;"><img decoding="async" src="assets/sideA.webp" style="width:1374.923076923077px;left:-36.923076923076934px;top:-424.61538461538464px" alt=""></div>
+    </div>
+    <div class="hair" style="margin:28px 0 22px"></div>
+    <div class="cap" style="letter-spacing:.2em">年龄 AGE</div><div class="t-xs" style="margin:6px 0 20px">25–40 岁</div>
+    <div class="cap" style="letter-spacing:.2em">需求 NEEDS</div>
+    <div class="p s" style="opacity:.8;margin-top:6px">— 注重颜值与穿搭同频</div><div class="p s" style="opacity:.8;margin-top:6px">— 雨天不狼狈、停车不发愁</div><div class="p s" style="opacity:.8;margin-top:6px">— 愿意为设计感买单</div>
+    <div style="position:absolute;left:44px;right:44px;bottom:36px;border-top:1px solid rgba(184,149,90,.5);padding-top:16px" class="t-xs gold">颜值 · 安心 · 自我表达</div>
+  </div><div data-a="up" style="--d:370;position:absolute;left:678px;top:420px;width:560px;height:560px;background:var(--cream);padding:40px 44px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div class="num gold" style="font-size:16px;letter-spacing:.2em">PERSONA 02</div>
+      <div class="t-s" style="margin-top:16px">接送孩子的年轻家庭</div><div class="it" style="font-size:20px;opacity:.55;margin-top:4px">The Young Family</div></div>
+      <div class="crop round" style="width:120px;height:120px;"><img decoding="async" src="assets/rearAB.webp" style="width:741.375px;left:-120px;top:-153.75px" alt=""></div>
+    </div>
+    <div class="hair" style="margin:28px 0 22px"></div>
+    <div class="cap" style="letter-spacing:.2em">年龄 AGE</div><div class="t-xs" style="margin:6px 0 20px">30–45 岁</div>
+    <div class="cap" style="letter-spacing:.2em">需求 NEEDS</div>
+    <div class="p s" style="opacity:.8;margin-top:6px">— 日常接送、周末采购</div><div class="p s" style="opacity:.8;margin-top:6px">— 有顶有门，更安全更挡风</div><div class="p s" style="opacity:.8;margin-top:6px">— 需要储物与便利</div>
+    <div style="position:absolute;left:44px;right:44px;bottom:36px;border-top:1px solid rgba(184,149,90,.5);padding-top:16px" class="t-xs gold">安全 · 实用 · 亲和</div>
+  </div><div data-a="up" style="--d:490;position:absolute;left:1268px;top:420px;width:560px;height:560px;background:var(--cream);padding:40px 44px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div class="num gold" style="font-size:16px;letter-spacing:.2em">PERSONA 03</div>
+      <div class="t-s" style="margin-top:16px">乐活优雅的银发一族</div><div class="it" style="font-size:20px;opacity:.55;margin-top:4px">The Graceful Senior</div></div>
+      <div class="crop round" style="width:120px;height:120px;"><img decoding="async" src="assets/sideA.webp" style="width:662px;left:-446.66666666666663px;top:-315.55555555555554px" alt=""></div>
+    </div>
+    <div class="hair" style="margin:28px 0 22px"></div>
+    <div class="cap" style="letter-spacing:.2em">年龄 AGE</div><div class="t-xs" style="margin:6px 0 20px">55 岁以上</div>
+    <div class="cap" style="letter-spacing:.2em">需求 NEEDS</div>
+    <div class="p s" style="opacity:.8;margin-top:6px">— 短途代步、社区活动</div><div class="p s" style="opacity:.8;margin-top:6px">— 上下车方便、操作简单</div><div class="p s" style="opacity:.8;margin-top:6px">— 偏爱经典、耐看的造型</div>
+    <div style="position:absolute;left:44px;right:44px;bottom:36px;border-top:1px solid rgba(184,149,90,.5);padding-top:16px" class="t-xs gold">经典 · 易用 · 体面</div>
+  </div>
+  <div class="ft"><span>Insight · Users</span><span class="pn">04 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg navy" id="p5">
+  <div class="abs" style="left:-200px;top:-420px;width:1100px;height:1100px;border-radius:50%;border:1px solid rgba(217,190,138,.15)"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>02 · Concept</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:150px;width:1300px">
+    <div class="kicker gold" data-a="up">02 · Design Concept</div>
+    <div class="t-xl" data-a="up" style="--d:100;margin-top:26px">复古是记忆，<span class="gold">摩登是态度。</span></div>
+    <div class="it" data-a="up" style="--d:200;font-size:30px;opacity:.6;margin-top:18px">Nostalgia as the soul, modernity as the attitude.</div>
+    <div class="p l" data-a="up" style="--d:260;margin-top:26px;max-width:1040px">以上世纪中叶欧洲「泡泡车」与旅行文化为灵感，用现代的比例、光感与工艺重新诠释——不是复刻旧物，而是让复古成为今天的日常。</div>
+  </div>
+  <div data-a="up" style="--d:360;position:absolute;left:88px;top:600px;width:400px">
+    <div class="crop " style="width:400px;height:220px;border-radius:2px"><img decoding="async" src="assets/frontAB.webp" style="width:1172.6349206349205px;left:-88.09523809523807px;top:-226.984126984127px" alt=""></div>
+    <div style="display:flex;align-items:baseline;gap:16px;margin-top:26px"><span class="t-m">圆</span><span class="it gold" style="font-size:24px">Bubble</span></div>
+    <div class="p s" style="margin-top:10px">饱满圆润的泡泡车体量，前脸如微笑，亲和而不幼稚。</div></div><div data-a="up" style="--d:470;position:absolute;left:528px;top:600px;width:400px">
+    <div class="crop " style="width:400px;height:220px;border-radius:2px"><img decoding="async" src="assets/sideA.webp" style="width:1191.6000000000001px;left:-760px;top:-54px" alt=""></div>
+    <div style="display:flex;align-items:baseline;gap:16px;margin-top:26px"><span class="t-m">双色</span><span class="it gold" style="font-size:24px">Two-Tone</span></div>
+    <div class="p s" style="margin-top:10px">瓷白车顶 × 曜石黑玻璃带 × 晴空蓝车身，经典复古配比。</div></div><div data-a="up" style="--d:580;position:absolute;left:968px;top:600px;width:400px">
+    <div class="crop " style="width:400px;height:220px;border-radius:2px"><img decoding="async" src="assets/sideA.webp" style="width:2535.31914893617px;left:-1429.787234042553px;top:-681.4893617021277px" alt=""></div>
+    <div style="display:flex;align-items:baseline;gap:16px;margin-top:26px"><span class="t-m">镀铬</span><span class="it gold" style="font-size:24px">Chrome</span></div>
+    <div class="p s" style="margin-top:10px">腰线、门把手、铭牌、灯圈以亮银勾边，精致的年代感。</div></div><div data-a="up" style="--d:690;position:absolute;left:1408px;top:600px;width:400px">
+    <div class="crop " style="width:400px;height:220px;border-radius:2px"><img decoding="async" src="assets/rearAB.webp" style="width:1882.8571428571427px;left:-257.1428571428571px;top:-432.8571428571428px" alt=""></div>
+    <div style="display:flex;align-items:baseline;gap:16px;margin-top:26px"><span class="t-m">旅行</span><span class="it gold" style="font-size:24px">Voyage</span></div>
+    <div class="p s" style="margin-top:10px">亚麻行李箱、木纹饰条与手写字标，讲一段慢生活的故事。</div></div>
+  <div class="ft"><span>Concept</span><span class="pn">05 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg cream" id="p6">
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>02 · Concept</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:150px;width:520px">
+    <div class="kicker gold" data-a="up">02 · Mood Board</div>
+    <div class="t-l" data-a="up" style="--d:100;margin-top:22px">灵感情绪板</div>
+    <div class="p" data-a="up" style="--d:180;margin-top:22px">地中海海岸的蓝、五十年代泡泡车的圆、老式旅行箱的亚麻与皮革、餐车吧台的镀铬反光——把这些温柔的旧时光，装进一辆今天的小车里。</div>
+    <div data-a="up" style="--d:260;margin-top:40px">
+      <div style="border-top:1px solid rgba(16,20,29,.15);padding:13px 0" class="t-xs"><span class="gold">◆</span>　Riviera Blue · 海岸蓝</div><div style="border-top:1px solid rgba(16,20,29,.15);padding:13px 0" class="t-xs"><span class="gold">◆</span>　Bubble Car · 泡泡车</div><div style="border-top:1px solid rgba(16,20,29,.15);padding:13px 0" class="t-xs"><span class="gold">◆</span>　Grand Tour · 旅行箱</div><div style="border-top:1px solid rgba(16,20,29,.15);padding:13px 0" class="t-xs"><span class="gold">◆</span>　Chrome Diner · 镀铬</div><div style="border-top:1px solid rgba(16,20,29,.15);padding:13px 0" class="t-xs"><span class="gold">◆</span>　Wood & Linen · 木与麻</div>
+    </div>
+  </div>
+  <div data-a="zoom" style="--d:150">
+  <div class="abs" style="left:680px;top:150px;width:560px;height:500px;background:linear-gradient(180deg,#9FB6E6 0%,#6E8ED0 55%,#3E5C9E 100%);overflow:hidden;"><div class="abs" style="left:170px;top:70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#FFF4DC 0%,#F6DDA8 60%,rgba(246,221,168,0) 72%)"></div>
+     <div class="abs" style="left:0;right:0;top:330px;bottom:0;background:linear-gradient(180deg,#34538F,#253E73)"></div>
+     <div class="abs" style="left:40px;right:40px;top:350px;height:1px;background:rgba(255,244,220,0.4)"></div><div class="abs" style="left:70px;right:70px;top:376px;height:1px;background:rgba(255,244,220,0.33)"></div><div class="abs" style="left:100px;right:100px;top:402px;height:1px;background:rgba(255,244,220,0.26)"></div><div class="abs" style="left:130px;right:130px;top:428px;height:1px;background:rgba(255,244,220,0.19)"></div><div class="abs" style="left:160px;right:160px;top:454px;height:1px;background:rgba(255,244,220,0.12)"></div>
+     <div class="abs it" style="left:36px;bottom:26px;color:#FFF4DC;font-size:26px">Riviera, 1958</div></div>
+  <div class="abs" style="left:1270px;top:150px;width:560px;height:240px;background:#1C1E2A;overflow:hidden;"><div class="abs" style="inset:0"><div class="crop " style="width:560px;height:240px;background:#1C1E2A"><img decoding="async" src="assets/sideA.webp" style="width:1668.2400000000002px;left:-1064.0000000000002px;top:-109.60000000000002px" alt=""></div></div><div class="abs it" style="left:26px;bottom:18px;color:#fff;font-size:22px;z-index:3">Two-tone</div></div>
+  <div class="abs" style="left:1270px;top:410px;width:270px;height:240px;overflow:hidden;"><div class="crop " style="width:270px;height:240px;"><img decoding="async" src="assets/sideA.webp" style="width:2783.1487889273358px;left:-2513.1487889273358px;top:-776.8858131487889px" alt=""></div></div>
+  <div class="abs" style="left:1560px;top:410px;width:270px;height:240px;overflow:hidden;"><div class="crop " style="width:270px;height:240px;"><img decoding="async" src="assets/sideA.webp" style="width:3093.5769230769233px;left:-83.0769230769231px;top:-970.3846153846155px" alt=""></div></div>
+  <div class="abs" style="left:680px;top:680px;width:360px;height:300px;overflow:hidden;"><div class="crop " style="width:360px;height:300px;"><img decoding="async" src="assets/sideA.webp" style="width:1675.6875px;left:-1102.5px;top:-800.625px" alt=""></div></div>
+  <div class="abs" style="left:1060px;top:680px;width:360px;height:300px;background:linear-gradient(135deg,#8A5A3E,#5E3B2B);overflow:hidden;"><div class="crop " style="width:360px;height:300px;"><img decoding="async" src="assets/sideA.webp" style="width:2979px;left:-1280px;top:-1440px" alt=""></div></div>
+  <div class="abs" style="left:1440px;top:680px;width:390px;height:300px;background:#E9E3D8;overflow:hidden;"><div class="abs" style="inset:0;display:grid;grid-template-columns:repeat(3,1fr)">
+      <div style="background:#6B87CB"></div><div style="background:#F0EEF3"></div><div style="background:#1C1E2A"></div><div style="background:#7C574F"></div><div style="background:#DCCEB3"></div><div style="background:#C9CCD2"></div></div>
+     <div class="abs it" style="left:20px;bottom:14px;font-size:20px;color:#fff;mix-blend-mode:difference">Palette</div></div>
+  </div>
+  <div class="ft"><span>Concept · Mood</span><span class="pn">06 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg cream" id="p7">
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>02 · Concept</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:150px;width:900px">
+    <div class="kicker gold" data-a="up">02 · Colour · Material · Finish</div>
+    <div class="t-l" data-a="up" style="--d:100;margin-top:22px">色彩与材质</div>
+  </div>
+  <div class="abs" data-a="up" style="--d:160;left:1000px;top:196px;width:830px">
+    <div class="p">颜色全部取自车辆效果图原稿。以<span class="bl">晴空蓝</span>为主色，瓷白与曜石黑构成经典双色，木纹、亚麻与镀铬作为点睛，比例克制，高级感来自留白与材质对比。</div>
+    <div style="display:flex;height:14px;margin-top:22px;border-radius:2px;overflow:hidden">
+      <div style="flex:60;background:#6B87CB"></div><div style="flex:17;background:#F0EEF3;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)"></div><div style="flex:15;background:#1C1E2A"></div><div style="flex:4;background:#7C574F"></div><div style="flex:2;background:#DCCEB3"></div><div style="flex:2;background:#C9CCD2"></div>
+    </div>
+    <div class="cap" style="display:flex;justify-content:space-between;margin-top:8px"><span>主色 ≈ 60%</span><span>双色 ≈ 32%</span><span>点缀 ≈ 8%（面积比例示意）</span></div>
+  </div>
+  <div data-a="up" style="--d:260;position:absolute;left:88px;top:440px;width:263px">
+      <div style="height:250px;background:#6B87CB;position:relative;">
+        <div class="abs lat" style="left:18px;bottom:16px;color:#fff;opacity:.8;font-size:14px;letter-spacing:.14em">#6B87CB</div></div>
+      <div class="crop " style="width:263px;height:200px;"><img decoding="async" src="assets/sideA.webp" style="width:2611.59px;left:-964.3333333333335px;top:-995.8333333333335px" alt=""></div>
+      <div class="t-s" style="margin-top:20px;font-size:24px">晴空蓝</div>
+      <div class="it" style="font-size:18px;opacity:.55;margin-top:2px">Riviera Blue</div>
+      <div class="cap" style="margin-top:8px">主车身 · 高光金属漆</div></div><div data-a="up" style="--d:340;position:absolute;left:381px;top:440px;width:263px">
+      <div style="height:250px;background:#F0EEF3;position:relative;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)">
+        <div class="abs lat" style="left:18px;bottom:16px;color:#10141D;opacity:.8;font-size:14px;letter-spacing:.14em">#F0EEF3</div></div>
+      <div class="crop " style="width:263px;height:200px;"><img decoding="async" src="assets/sideA.webp" style="width:783.4770000000001px;left:-499.70000000000005px;top:-7.829999999999998px" alt=""></div>
+      <div class="t-s" style="margin-top:20px;font-size:24px">瓷白</div>
+      <div class="it" style="font-size:18px;opacity:.55;margin-top:2px">Porcelain White</div>
+      <div class="cap" style="margin-top:8px">悬浮车顶 · 亮光</div></div><div data-a="up" style="--d:420;position:absolute;left:674px;top:440px;width:263px">
+      <div style="height:250px;background:#1C1E2A;position:relative;">
+        <div class="abs lat" style="left:18px;bottom:16px;color:#fff;opacity:.8;font-size:14px;letter-spacing:.14em">#1C1E2A</div></div>
+      <div class="crop " style="width:263px;height:200px;"><img decoding="async" src="assets/sideA.webp" style="width:3133.9080000000004px;left:-1998.8000000000002px;top:-557.5px" alt=""></div>
+      <div class="t-s" style="margin-top:20px;font-size:24px">曜石黑</div>
+      <div class="it" style="font-size:18px;opacity:.55;margin-top:2px">Obsidian</div>
+      <div class="cap" style="margin-top:8px">玻璃带 · 立柱</div></div><div data-a="up" style="--d:500;position:absolute;left:967px;top:440px;width:263px">
+      <div style="height:250px;background:#7C574F;position:relative;">
+        <div class="abs lat" style="left:18px;bottom:16px;color:#fff;opacity:.8;font-size:14px;letter-spacing:.14em">#7C574F</div></div>
+      <div class="crop " style="width:263px;height:200px;"><img decoding="async" src="assets/sideA.webp" style="width:2708.181818181818px;left:-1195.7727272727273px;top:-1345.4545454545455px" alt=""></div>
+      <div class="t-s" style="margin-top:20px;font-size:24px">干邑木纹</div>
+      <div class="it" style="font-size:18px;opacity:.55;margin-top:2px">Cognac Wood</div>
+      <div class="cap" style="margin-top:8px">侧饰条 · 木纹中网</div></div><div data-a="up" style="--d:580;position:absolute;left:1260px;top:440px;width:263px">
+      <div style="height:250px;background:#DCCEB3;position:relative;">
+        <div class="abs lat" style="left:18px;bottom:16px;color:#10141D;opacity:.8;font-size:14px;letter-spacing:.14em">#DCCEB3</div></div>
+      <div class="crop " style="width:263px;height:200px;"><img decoding="async" src="assets/sideA.webp" style="width:2710.993079584775px;left:-2447.993079584775px;top:-773.6332179930796px" alt=""></div>
+      <div class="t-s" style="margin-top:20px;font-size:24px">亚麻</div>
+      <div class="it" style="font-size:18px;opacity:.55;margin-top:2px">Linen</div>
+      <div class="cap" style="margin-top:8px">行李箱 · 皮革包角</div></div><div data-a="up" style="--d:660;position:absolute;left:1553px;top:440px;width:263px">
+      <div style="height:250px;background:#C9CCD2;position:relative;">
+        <div class="abs lat" style="left:18px;bottom:16px;color:#10141D;opacity:.8;font-size:14px;letter-spacing:.14em">#C9CCD2</div></div>
+      <div class="crop " style="width:263px;height:200px;"><img decoding="async" src="assets/sideA.webp" style="width:2291.538461538462px;left:-1341.576923076923px;top:-615.3846153846155px" alt=""></div>
+      <div class="t-s" style="margin-top:20px;font-size:24px">镀铬银</div>
+      <div class="it" style="font-size:18px;opacity:.55;margin-top:2px">Chrome</div>
+      <div class="cap" style="margin-top:8px">腰线 · 门把手 · 灯圈</div></div>
+  <div class="ft"><span>Concept · CMF</span><span class="pn">07 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg paper" id="p8">
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>02 · Concept</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:150px;width:470px">
+    <div class="kicker gold" data-a="up">02 · Form Language</div>
+    <div class="t-l" data-a="up" style="--d:100;margin-top:22px">造型语言</div>
+    <div class="p" data-a="up" style="--d:180;margin-top:22px">一条平直利落的镀铬腰线，把车身切分为上下两段：上半部是轻盈悬浮的双色座舱，下半部是饱满圆润的泡泡车体。</div>
+  </div>
+  <div class="abs" data-a="up" style="--d:260;left:88px;top:560px;width:430px">
+    
+      <div style="border-top:1px solid rgba(16,20,29,.16);padding:18px 0"><span class="num gold" style="font-size:15px;letter-spacing:.16em">01</span>
+      <span class="t-xs" style="margin-left:14px">黄金分割</span><div class="p s" style="margin-top:6px">腰线以上 : 以下 ≈ 0.38 : 0.62，接近黄金比例，视觉稳定而轻盈。</div></div>
+      <div style="border-top:1px solid rgba(16,20,29,.16);padding:18px 0"><span class="num gold" style="font-size:15px;letter-spacing:.16em">02</span>
+      <span class="t-xs" style="margin-left:14px">同心圆母题</span><div class="p s" style="margin-top:6px">轮拱装饰纹、圆形大灯、轮毂开孔，以圆作为统一的造型语汇。</div></div>
+      <div style="border-top:1px solid rgba(16,20,29,.16);padding:18px 0"><span class="num gold" style="font-size:15px;letter-spacing:.16em">03</span>
+      <span class="t-xs" style="margin-left:14px">悬浮车顶</span><div class="p s" style="margin-top:6px">白色车顶向后延伸出小尾翼，像一顶礼帽，带来优雅的姿态感。</div></div>
+  </div>
+  <div class="shd" style="left:721.8px;top:926.7111782477342px;width:996.4px;height:59.34078549848944px"></div><img decoding="async" class="car " data-a="fade" style="--d:0;left:690px;top:260px;width:1060px" src="assets/sideA.webp" alt="">
+  <svg class="ov" width="1920" height="1080" data-a="fade" style="--d:500">
+    <g stroke="rgba(184,149,90,.9)" stroke-width="1" fill="none">
+      <line x1="630" y1="274.2329640819067" x2="1790" y2="274.2329640819067" stroke-dasharray="4 6"/>
+      <line x1="630" y1="533.9845585767036" x2="1790" y2="533.9845585767036"/>
+      <line x1="630" y1="955.2802954011413" x2="1790" y2="955.2802954011413" stroke-dasharray="4 6"/>
+      <line x1="789.6307485733468" y1="244.2329640819067" x2="789.6307485733468" y2="995.2802954011413" stroke-dasharray="2 5"/>
+      <line x1="1500.2114803625377" y1="244.2329640819067" x2="1500.2114803625377" y2="995.2802954011413" stroke-dasharray="2 5"/>
+      <circle cx="789.6307485733468" cy="868.4592145015106" r="115.4098690835851"/><circle cx="789.6307485733468" cy="868.4592145015106" r="135.40986908358508" opacity=".45"/>
+      <circle cx="1500.2114803625377" cy="868.4592145015106" r="118.96811010406176"/><circle cx="1500.2114803625377" cy="868.4592145015106" r="138.96811010406176" opacity=".45"/>
+      <line x1="1806" y1="274.2329640819067" x2="1806" y2="955.2802954011413"/>
+      <line x1="1800" y1="274.2329640819067" x2="1812" y2="274.2329640819067"/><line x1="1800" y1="533.9845585767036" x2="1812" y2="533.9845585767036"/><line x1="1800" y1="955.2802954011413" x2="1812" y2="955.2802954011413"/>
+    </g>
+  </svg>
+  <div class="abs lat gold" style="left:1820px;top:392.10876132930514px;font-size:22px">0.38</div>
+  <div class="abs lat gold" style="left:1820px;top:732.6324269889225px;font-size:22px">0.62</div>
+  <div class="abs cap" style="left:630px;top:507.98455857670365px;letter-spacing:.24em">BELTLINE 镀铬腰线</div>
+  <div class="abs cap" style="left:630px;top:248.2329640819067px;letter-spacing:.24em">ROOFLINE</div>
+  <div class="abs cap" style="left:1084.9211144679423px;top:979.2802954011413px;letter-spacing:.24em">WHEELBASE 轴距</div>
+  <div class="ft"><span>Concept · Form</span><span class="pn">08 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg cream" id="p9">
+  
+  <div class="abs" style="left:0;right:0;top:0;height:950px;background:linear-gradient(180deg,#F3EFE8 0%,#E8E1D5 100%)"></div>
+  <div class="abs" style="left:440px;top:120px;width:1320px;height:1320px;border-radius:50%;background:radial-gradient(circle,#F9F6F0 0%,#EFE8DC 52%,rgba(239,232,220,0) 70%)"></div>
+  <div class="abs" style="left:520px;top:200px;width:1160px;height:1160px;border-radius:50%;border:1px solid rgba(184,149,90,0.42)"></div><div class="abs" style="left:610px;top:290px;width:980px;height:980px;border-radius:50%;border:1px solid rgba(184,149,90,0.33999999999999997)"></div><div class="abs" style="left:700px;top:380px;width:800px;height:800px;border-radius:50%;border:1px solid rgba(184,149,90,0.26)"></div><div class="abs" style="left:790px;top:470px;width:620px;height:620px;border-radius:50%;border:1px solid rgba(184,149,90,0.18)"></div>
+  <div class="abs" style="left:0;right:0;top:950px;bottom:0;background:linear-gradient(180deg,#DCD3C4,#D2C8B7)"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>03 · Scheme A</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:150px">
+    <div class="kicker gold" data-a="up">Scheme A</div>
+    <div class="it" data-a="up" style="--d:100;font-size:96px;line-height:1;margin-top:18px;color:var(--navy)">Classic Voyage</div>
+    <div class="t-m" data-a="up" style="--d:180;margin-top:14px">经典旅行版</div>
+  </div>
+  <div class="abs" data-a="up" style="--d:300;left:88px;top:420px;width:470px">
+    <div class="hair g" style="width:60px;margin-bottom:26px"></div>
+    <div class="p">圆形复古大灯、干邑木纹饰条、手写 <span class="it">Beautiful</span> 字标与尾部亚麻行李箱——一辆随时准备出发去度假的小车。</div>
+  </div>
+  <div class="shd" style="left:745.6px;top:916.8060422960725px;width:1052.8px;height:62.699697885196386px"></div><img decoding="async" class="refl" src="assets/sideA.webp" style="left:712px;top:948px;width:1120px"><img decoding="async" class="car " data-a="right" style="--d:150;left:712px;top:212.3564954682779px;width:1120px" src="assets/sideA.webp" alt="">
+  <div class="ft"><span>Scheme A · Classic Voyage</span><span class="pn">09 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg cream" id="p10">
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>03 · Scheme A</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:120px">
+    <div class="kicker gold" data-a="up">Scheme A · Design Details</div>
+    <div class="t-m" data-a="up" style="--d:100;margin-top:14px">设计细节</div>
+  </div>
+  <div class="shd" style="left:490px;top:870.3625377643505px;width:940px;height:55.98187311178248px"></div><img decoding="async" class="car " data-a="fade" style="--d:0;left:460px;top:241.38972809667678px;width:1000px" src="assets/sideA.webp" alt="">
+  <svg class="ov" width="1920" height="1080"><polyline points="934.320241691843,261.5307150050353 434,210 400,210" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".85"/><circle cx="934.320241691843" cy="261.5307150050353" r="9" fill="none" stroke="var(--gold)" stroke-width="1"/><circle cx="934.320241691843" cy="261.5307150050353" r="3" fill="var(--gold)"/><circle cx="400" cy="210" r="2" fill="var(--gold)"/><polyline points="647.6468613628734,572.7089627391742 434,420 400,420" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".85"/><circle cx="647.6468613628734" cy="572.7089627391742" r="9" fill="none" stroke="var(--gold)" stroke-width="1"/><circle cx="647.6468613628734" cy="572.7089627391742" r="3" fill="var(--gold)"/><circle cx="400" cy="420" r="2" fill="var(--gold)"/><polyline points="527.1366230278617,593.8569989929507 434,580 400,580" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".85"/><circle cx="527.1366230278617" cy="593.8569989929507" r="9" fill="none" stroke="var(--gold)" stroke-width="1"/><circle cx="527.1366230278617" cy="593.8569989929507" r="3" fill="var(--gold)"/><circle cx="400" cy="580" r="2" fill="var(--gold)"/><polyline points="750.7015777106412,725.4447801275596 434,740 400,740" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".85"/><circle cx="750.7015777106412" cy="725.4447801275596" r="9" fill="none" stroke="var(--gold)" stroke-width="1"/><circle cx="750.7015777106412" cy="725.4447801275596" r="3" fill="var(--gold)"/><circle cx="400" cy="740" r="2" fill="var(--gold)"/><polyline points="795.6831151393085,775.4615642833165 434,900 400,900" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".85"/><circle cx="795.6831151393085" cy="775.4615642833165" r="9" fill="none" stroke="var(--gold)" stroke-width="1"/><circle cx="795.6831151393085" cy="775.4615642833165" r="3" fill="var(--gold)"/><circle cx="400" cy="900" r="2" fill="var(--gold)"/><polyline points="1265.6394763343403,501.54414232964086 1486,300 1520,300" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".85"/><circle cx="1265.6394763343403" cy="501.54414232964086" r="9" fill="none" stroke="var(--gold)" stroke-width="1"/><circle cx="1265.6394763343403" cy="501.54414232964086" r="3" fill="var(--gold)"/><circle cx="1520" cy="300" r="2" fill="var(--gold)"/><polyline points="1097.797918764686,550.2181940248406 1486,450 1520,450" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".85"/><circle cx="1097.797918764686" cy="550.2181940248406" r="9" fill="none" stroke="var(--gold)" stroke-width="1"/><circle cx="1097.797918764686" cy="550.2181940248406" r="3" fill="var(--gold)"/><circle cx="1520" cy="450" r="2" fill="var(--gold)"/><polyline points="1416.696878147029,560.2886874790198 1486,600 1520,600" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".85"/><circle cx="1416.696878147029" cy="560.2886874790198" r="9" fill="none" stroke="var(--gold)" stroke-width="1"/><circle cx="1416.696878147029" cy="560.2886874790198" r="3" fill="var(--gold)"/><circle cx="1520" cy="600" r="2" fill="var(--gold)"/><polyline points="1192.124874118832,702.6183282980867 1486,760 1520,760" fill="none" stroke="var(--gold)" stroke-width="1" opacity=".85"/><circle cx="1192.124874118832" cy="702.6183282980867" r="9" fill="none" stroke="var(--gold)" stroke-width="1"/><circle cx="1192.124874118832" cy="702.6183282980867" r="3" fill="var(--gold)"/><circle cx="1520" cy="760" r="2" fill="var(--gold)"/></svg><div class="co r" data-a="up" style="--d:300;left:138px;top:194px"><span class="n">01</span><h5>悬浮白顶 · 双色座舱</h5><p>瓷白车顶后掠成小尾翼</p></div><div class="co r" data-a="up" style="--d:390;left:138px;top:404px"><span class="n">02</span><h5>镀铬 VADEA 铭牌</h5><p>前翼子板精致点缀</p></div><div class="co r" data-a="up" style="--d:480;left:138px;top:564px"><span class="n">03</span><h5>复古圆形大灯</h5><p>镀铬灯圈，温和的「大眼睛」</p></div><div class="co r" data-a="up" style="--d:570;left:138px;top:724px"><span class="n">04</span><h5>Beautiful 手写字标</h5><p>一句写给车主的情话</p></div><div class="co r" data-a="up" style="--d:660;left:138px;top:884px"><span class="n">05</span><h5>干邑木纹饰条</h5><p>镶嵌 modern 字标</p></div><div class="co " data-a="up" style="--d:750;left:1532px;top:284px"><span class="n">06</span><h5>镀铬腰线</h5><p>贯穿车身的亮银分割线</p></div><div class="co " data-a="up" style="--d:840;left:1532px;top:434px"><span class="n">07</span><h5>镀铬嵌入式门把手</h5><p>与腰线一体的简洁造型</p></div><div class="co " data-a="up" style="--d:930;left:1532px;top:584px"><span class="n">08</span><h5>复古亚麻行李箱</h5><p>皮革包角 · 可拆卸装饰</p></div><div class="co " data-a="up" style="--d:1020;left:1532px;top:744px"><span class="n">09</span><h5>轮拱同心装饰纹</h5><p>唱片般的细密纹理</p></div>
+  <div class="ft"><span>Scheme A · Details</span><span class="pn">10 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg navy" id="p11">
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>03 · Scheme A</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:130px;display:flex;align-items:flex-end;gap:40px">
+    <div><div class="kicker gold" data-a="up">Scheme A · Close-ups</div>
+    <div class="t-m" data-a="up" style="--d:100;margin-top:14px">细节特写</div></div>
+    <div class="p" data-a="up" style="--d:160;max-width:720px;margin-bottom:6px">镀铬、木纹、亚麻与皮革——每一处触点都经得起近看。</div>
+  </div>
+  <div data-a="up" style="--d:200;position:absolute;left:88px;top:270px;width:336px;height:330px">
+      <div class="crop " style="width:336px;height:330px;"><img decoding="async" src="assets/sideA.webp" style="width:2979px;left:-32px;top:-885px" alt=""></div>
+      <div class="abs" style="left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(18,26,46,0),rgba(18,26,46,.78))"></div>
+      <div class="abs" style="left:20px;bottom:16px;color:#F3EEE4"><span class="t-xs" style="font-size:17px">复古圆灯</span><span class="it" style="font-size:15px;opacity:.7;margin-left:10px">Round Lamp</span></div></div><div data-a="up" style="--d:270;position:absolute;left:436px;top:270px;width:684px;height:330px">
+      <div class="crop " style="width:684px;height:330px;"><img decoding="async" src="assets/frontAB.webp" style="width:1997.28px;left:-148.695652173913px;top:-408.96521739130435px" alt=""></div>
+      <div class="abs" style="left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(18,26,46,0),rgba(18,26,46,.78))"></div>
+      <div class="abs" style="left:20px;bottom:16px;color:#F3EEE4"><span class="t-xs" style="font-size:17px">微笑前脸</span><span class="it" style="font-size:15px;opacity:.7;margin-left:10px">Smiling Face</span></div></div><div data-a="up" style="--d:340;position:absolute;left:1132px;top:270px;width:336px;height:672px">
+      <div class="crop " style="width:336px;height:672px;"><img decoding="async" src="assets/sideA.webp" style="width:3463.4740484429067px;left:-3127.4740484429067px;top:-780.1245674740485px" alt=""></div>
+      <div class="abs" style="left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(18,26,46,0),rgba(18,26,46,.78))"></div>
+      <div class="abs" style="left:20px;bottom:16px;color:#F3EEE4"><span class="t-xs" style="font-size:17px">亚麻行李箱</span><span class="it" style="font-size:15px;opacity:.7;margin-left:10px">Linen Case</span></div></div><div data-a="up" style="--d:410;position:absolute;left:1480px;top:270px;width:336px;height:330px">
+      <div class="crop " style="width:336px;height:330px;"><img decoding="async" src="assets/rearAB.webp" style="width:2038.78125px;left:-327px;top:-422.8125px" alt=""></div>
+      <div class="abs" style="left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(18,26,46,0),rgba(18,26,46,.78))"></div>
+      <div class="abs" style="left:20px;bottom:16px;color:#F3EEE4"><span class="t-xs" style="font-size:17px">GD 字母行李箱 · 背面</span><span class="it" style="font-size:15px;opacity:.7;margin-left:10px">Monogram</span></div></div><div data-a="up" style="--d:480;position:absolute;left:88px;top:612px;width:336px;height:330px">
+      <div class="crop " style="width:336px;height:330px;"><img decoding="async" src="assets/sideA.webp" style="width:2979px;left:-1732px;top:-755px" alt=""></div>
+      <div class="abs" style="left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(18,26,46,0),rgba(18,26,46,.78))"></div>
+      <div class="abs" style="left:20px;bottom:16px;color:#F3EEE4"><span class="t-xs" style="font-size:17px">镀铬门把手</span><span class="it" style="font-size:15px;opacity:.7;margin-left:10px">Chrome Handle</span></div></div><div data-a="up" style="--d:550;position:absolute;left:436px;top:612px;width:336px;height:330px">
+      <div class="crop " style="width:336px;height:330px;"><img decoding="async" src="assets/sideA.webp" style="width:2979px;left:-391px;top:-822px" alt=""></div>
+      <div class="abs" style="left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(18,26,46,0),rgba(18,26,46,.78))"></div>
+      <div class="abs" style="left:20px;bottom:16px;color:#F3EEE4"><span class="t-xs" style="font-size:17px">VADEA 铭牌</span><span class="it" style="font-size:15px;opacity:.7;margin-left:10px">Badge</span></div></div><div data-a="up" style="--d:620;position:absolute;left:784px;top:612px;width:336px;height:330px">
+      <div class="crop " style="width:336px;height:330px;"><img decoding="async" src="assets/sideA.webp" style="width:1668.2400000000002px;left:-420px;top:-686.2px" alt=""></div>
+      <div class="abs" style="left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(18,26,46,0),rgba(18,26,46,.78))"></div>
+      <div class="abs" style="left:20px;bottom:16px;color:#F3EEE4"><span class="t-xs" style="font-size:17px">手写字标 · 木纹饰条</span><span class="it" style="font-size:15px;opacity:.7;margin-left:10px">Script</span></div></div><div data-a="up" style="--d:690;position:absolute;left:1480px;top:612px;width:336px;height:330px">
+      <div class="crop " style="width:336px;height:330px;"><img decoding="async" src="assets/sideA.webp" style="width:1820.5000000000002px;left:-1225.3333333333335px;top:-867.7777777777778px" alt=""></div>
+      <div class="abs" style="left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(18,26,46,0),rgba(18,26,46,.78))"></div>
+      <div class="abs" style="left:20px;bottom:16px;color:#F3EEE4"><span class="t-xs" style="font-size:17px">白边轮胎 · 同心轮拱</span><span class="it" style="font-size:15px;opacity:.7;margin-left:10px">Whitewall</span></div></div>
+  <div class="ft"><span>Scheme A · Close-ups</span><span class="pn">11 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg paper" id="p12">
+  <div class="abs" style="left:1390px;top:0;bottom:0;right:0;background:var(--navy)"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>03 · Scheme A</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:120px">
+    <div class="kicker gold" data-a="up">Scheme A · Personalised Grille</div>
+    <div class="t-m" data-a="up" style="--d:100;margin-top:14px">个性化前脸：一车两面</div>
+  </div>
+  <div class="shd" style="left:227.9850746268657px;top:873px;width:484.0298507462686px;height:51.00000000000001px"></div><img decoding="async" class="car " data-a="up" style="--d:150;left:212.53731343283584px;top:300px;width:514.9253731343283px" src="assets/frontA1.webp" alt=""><div class="shd" style="left:847.4626865671642px;top:873px;width:505.07462686567163px;height:51.00000000000001px"></div><img decoding="async" class="car " data-a="up" style="--d:250;left:831.3432835820895px;top:300px;width:537.3134328358209px" src="assets/frontA2.webp" alt="">
+  <div class="abs center" data-a="up" style="--d:350;left:300px;top:930px;width:340px">
+    <div class="t-s" style="font-size:24px"><span class="lat gold" style="font-size:20px;margin-right:10px">A1</span>幻彩中网</div>
+    <div class="cap" style="margin-top:6px">点阵显示屏 · 可 DIY 图案与灯效</div></div>
+  <div class="abs center" data-a="up" style="--d:420;left:930px;top:930px;width:340px">
+    <div class="t-s" style="font-size:24px"><span class="lat gold" style="font-size:20px;margin-right:10px">A2</span>木纹中网</div>
+    <div class="cap" style="margin-top:6px">干邑木纹格栅 · 更温润经典</div></div>
+  <div class="abs" style="left:1450px;top:150px;width:390px;color:#EEE8DD">
+    <div class="kicker gold" data-a="up" style="color:var(--gold-l)">DIY Display · 概念示意</div>
+    <div class="t-s" data-a="up" style="--d:120;margin-top:16px">让车「会表达」</div>
+    <div class="p s" data-a="up" style="--d:180;margin-top:10px;color:#EEE8DD">A1 中网内置点阵屏，车主可通过手机 App 自定义图案：问候、节日、心情，停车时也能打个招呼。</div>
+    <div data-a="up" style="--d:260;display:grid;grid-template-columns:repeat(3,110px);gap:22px 30px;margin-top:40px">
+      <div style="text-align:center"><svg width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="ir-heart" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#7FD3FF"/><stop offset=".45" stop-color="#A98BFF"/><stop offset="1" stop-color="#FF8BD8"/></linearGradient></defs><circle cx="7.857142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="39.285714285714285" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="54.99999999999999" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="86.42857142857143" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="102.14285714285714" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="23.57142857142857" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="39.285714285714285" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="54.99999999999999" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="70.71428571428571" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="86.42857142857143" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="102.14285714285714" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="7.857142857142857" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="23.57142857142857" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="39.285714285714285" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="54.99999999999999" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="70.71428571428571" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="86.42857142857143" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="102.14285714285714" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="7.857142857142857" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="39.285714285714285" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="54.99999999999999" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="70.71428571428571" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="86.42857142857143" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="102.14285714285714" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="54.99999999999999" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="70.71428571428571" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="86.42857142857143" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-heart)"/><circle cx="70.71428571428571" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/></svg></div><div style="text-align:center"><svg width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="ir-smile" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#7FD3FF"/><stop offset=".45" stop-color="#A98BFF"/><stop offset="1" stop-color="#FF8BD8"/></linearGradient></defs><circle cx="7.857142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="54.99999999999999" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="70.71428571428571" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="86.42857142857143" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="39.285714285714285" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="102.14285714285714" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="23.57142857142857" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="54.99999999999999" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="86.42857142857143" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="7.857142857142857" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="23.57142857142857" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="7.857142857142857" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="23.57142857142857" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="54.99999999999999" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="86.42857142857143" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="7.857142857142857" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="39.285714285714285" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="70.71428571428571" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="102.14285714285714" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="54.99999999999999" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="70.71428571428571" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-smile)"/><circle cx="86.42857142857143" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/></svg></div><div style="text-align:center"><svg width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="ir-star" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#7FD3FF"/><stop offset=".45" stop-color="#A98BFF"/><stop offset="1" stop-color="#FF8BD8"/></linearGradient></defs><circle cx="7.857142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="70.71428571428571" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="70.71428571428571" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="23.57142857142857" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="39.285714285714285" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="54.99999999999999" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="70.71428571428571" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="86.42857142857143" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="102.14285714285714" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="7.857142857142857" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="39.285714285714285" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="54.99999999999999" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="70.71428571428571" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="86.42857142857143" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="102.14285714285714" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="54.99999999999999" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="70.71428571428571" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="86.42857142857143" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="39.285714285714285" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="54.99999999999999" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="86.42857142857143" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="102.14285714285714" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="39.285714285714285" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-star)"/><circle cx="102.14285714285714" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/></svg></div><div style="text-align:center"><svg width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="ir-logo" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#7FD3FF"/><stop offset=".45" stop-color="#A98BFF"/><stop offset="1" stop-color="#FF8BD8"/></linearGradient></defs><circle cx="7.857142857142857" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="23.57142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="7.857142857142857" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="39.285714285714285" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="102.14285714285714" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="54.99999999999999" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="86.42857142857143" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="70.71428571428571" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="70.71428571428571" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="70.71428571428571" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-logo)"/><circle cx="70.71428571428571" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/></svg></div><div style="text-align:center"><svg width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="ir-moon" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#7FD3FF"/><stop offset=".45" stop-color="#A98BFF"/><stop offset="1" stop-color="#FF8BD8"/></linearGradient></defs><circle cx="7.857142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="54.99999999999999" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="70.71428571428571" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="86.42857142857143" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="39.285714285714285" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="54.99999999999999" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="23.57142857142857" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="39.285714285714285" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="23.57142857142857" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="39.285714285714285" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="23.57142857142857" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="39.285714285714285" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="39.285714285714285" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="54.99999999999999" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="54.99999999999999" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="70.71428571428571" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-moon)"/><circle cx="86.42857142857143" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/></svg></div><div style="text-align:center"><svg width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="ir-bolt" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#7FD3FF"/><stop offset=".45" stop-color="#A98BFF"/><stop offset="1" stop-color="#FF8BD8"/></linearGradient></defs><circle cx="7.857142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="86.42857142857143" cy="7.857142857142857" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="102.14285714285714" cy="7.857142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="70.71428571428571" cy="23.57142857142857" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="86.42857142857143" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="23.57142857142857" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="54.99999999999999" cy="39.285714285714285" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="70.71428571428571" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="39.285714285714285" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="39.285714285714285" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="54.99999999999999" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="70.71428571428571" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="86.42857142857143" cy="54.99999999999999" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="102.14285714285714" cy="54.99999999999999" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="54.99999999999999" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="70.71428571428571" cy="70.71428571428571" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="86.42857142857143" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="70.71428571428571" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="39.285714285714285" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="54.99999999999999" cy="86.42857142857143" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="70.71428571428571" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="86.42857142857143" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="7.857142857142857" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="23.57142857142857" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="39.285714285714285" cy="102.14285714285714" r="5.342857142857143" fill="url(#ir-bolt)"/><circle cx="54.99999999999999" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="70.71428571428571" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="86.42857142857143" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/><circle cx="102.14285714285714" cy="102.14285714285714" r="5.342857142857143" fill="rgba(255,255,255,.07)"/></svg></div>
+    </div>
+    <div data-a="up" style="--d:340;margin-top:40px;display:flex;gap:18px">
+      <div class="crop " style="width:185px;height:100px;border-radius:2px"><img decoding="async" src="assets/frontA12.webp" style="width:1074.2857142857142px;left:-170.35714285714283px;top:-234.28571428571428px" alt=""></div><div class="crop " style="width:185px;height:100px;border-radius:2px"><img decoding="async" src="assets/frontA12.webp" style="width:1074.2857142857142px;left:-724.6428571428571px;top:-231.4285714285714px" alt=""></div>
+    </div>
+    <div class="cap" style="margin-top:10px;color:#EEE8DD">左：幻彩中网　右：木纹中网</div>
+  </div>
+  <div class="ft"><span>Scheme A · Grille</span><span class="pn" style="color:#EEE8DD">12 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg ink" id="p13">
+  
+  <div class="abs" style="left:300px;top:-100px;width:1500px;height:1100px;border-radius:50%;background:radial-gradient(ellipse at center,#23305A 0%,#161E36 45%,rgba(16,20,29,0) 72%)"></div>
+  <div class="abs" style="left:0;right:0;top:950px;bottom:0;background:#0B0E15"></div>
+  <div class="abs" style="left:180px;right:180px;top:950px;height:2px;background:linear-gradient(90deg,rgba(0,0,0,0),#57C6FF 20%,#8D7BFF 40%,#E27BFF 55%,#FFD36B 72%,#7CFFB2 85%,rgba(0,0,0,0));filter:blur(.5px);opacity:.85"></div>
+  <div class="abs" style="left:180px;right:180px;top:940px;height:26px;background:linear-gradient(90deg,rgba(0,0,0,0),#57C6FF 20%,#8D7BFF 40%,#E27BFF 55%,#FFD36B 72%,#7CFFB2 85%,rgba(0,0,0,0));filter:blur(22px);opacity:.35"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>04 · Scheme B</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="right:88px;top:150px;text-align:right">
+    <div class="kicker gold" data-a="up">Scheme B</div>
+    <div class="it" data-a="up" style="--d:100;font-size:88px;line-height:1;margin-top:18px">Chroma Pulse</div>
+    <div class="t-m" data-a="up" style="--d:180;margin-top:14px">幻彩律动版</div>
+  </div>
+  <div class="abs" data-a="up" style="--d:300;right:88px;top:420px;width:520px;text-align:right">
+    <div class="hair g" style="width:60px;margin:0 0 26px auto"></div>
+    <div class="p" style="color:#EEE8DD">在经典双色车身上注入流动的光：透镜大灯的幻彩光圈、贯穿侧身的流光饰条、星辰笑脸灯带——复古的骨架，潮流的灵魂。</div>
+  </div>
+  <div class="shd" style="left:221.8px;top:917.1063995215311px;width:996.4px;height:62.132356459330154px"></div><img decoding="async" class="refl" src="assets/sideB.webp" style="left:190px;top:948px;width:1060px"><img decoding="async" class="car " data-a="left" style="--d:150;left:190px;top:219.03110047846883px;width:1060px" src="assets/sideB.webp" alt="">
+  <div class="ft"><span>Scheme B · Chroma Pulse</span><span class="pn">13 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg ink" id="p14">
+  <div class="abs" style="left:1180px;top:0;bottom:0;right:0;background:#151B2C"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>04 · Scheme B</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:120px">
+    <div class="kicker gold" data-a="up">Scheme B · Lighting</div>
+    <div class="t-m" data-a="up" style="--d:100;margin-top:14px">灯光细节</div>
+  </div>
+  <div class="shd" style="left:267.2327272727273px;top:928.5px;width:585.5345454545454px;height:59.50000000000001px"></div><img decoding="async" class="car " data-a="up" style="--d:100;left:248.54545454545456px;top:260px;width:622.9090909090909px" src="assets/frontB.webp" alt="">
+  <svg class="ov" width="1920" height="1080"><polyline points="589.2727272727273,594.909090909091 966,330 1000,330" fill="none" stroke="var(--gold-l)" stroke-width="1" opacity=".85"/><circle cx="589.2727272727273" cy="594.909090909091" r="9" fill="none" stroke="var(--gold-l)" stroke-width="1"/><circle cx="589.2727272727273" cy="594.909090909091" r="3" fill="var(--gold-l)"/><circle cx="1000" cy="330" r="2" fill="var(--gold-l)"/><polyline points="487.81818181818187,588 966,470 1000,470" fill="none" stroke="var(--gold-l)" stroke-width="1" opacity=".85"/><circle cx="487.81818181818187" cy="588" r="9" fill="none" stroke="var(--gold-l)" stroke-width="1"/><circle cx="487.81818181818187" cy="588" r="3" fill="var(--gold-l)"/><circle cx="1000" cy="470" r="2" fill="var(--gold-l)"/><polyline points="337.6363636363636,521.8181818181818 214,280 180,280" fill="none" stroke="var(--gold-l)" stroke-width="1" opacity=".85"/><circle cx="337.6363636363636" cy="521.8181818181818" r="9" fill="none" stroke="var(--gold-l)" stroke-width="1"/><circle cx="337.6363636363636" cy="521.8181818181818" r="3" fill="var(--gold-l)"/><circle cx="180" cy="280" r="2" fill="var(--gold-l)"/><polyline points="463.4545454545455,560 966,610 1000,610" fill="none" stroke="var(--gold-l)" stroke-width="1" opacity=".85"/><circle cx="463.4545454545455" cy="560" r="9" fill="none" stroke="var(--gold-l)" stroke-width="1"/><circle cx="463.4545454545455" cy="560" r="3" fill="var(--gold-l)"/><circle cx="1000" cy="610" r="2" fill="var(--gold-l)"/></svg><div class="co " data-a="up" style="--d:300;left:1012px;top:314px"><span class="n">01</span><h5>星辰笑脸灯带</h5><p>幻彩渐变 · 贯穿前脸</p></div><div class="co " data-a="up" style="--d:390;left:1012px;top:454px"><span class="n">02</span><h5>「眼睛」透镜灯</h5><p>萌趣而精密</p></div><div class="co r" data-a="up" style="--d:480;left:-82px;top:264px"><span class="n">03</span><h5>圆形复古后视镜</h5><p>白色镜壳 + 蓝色镜臂</p></div><div class="co " data-a="up" style="--d:570;left:1012px;top:594px"><span class="n">04</span><h5>白色前围饰板</h5><p>与车顶呼应的双色分割</p></div>
+  <div class="abs" style="left:1260px;top:150px;width:580px">
+    <div data-a="up" style="--d:200"><div class="crop " style="width:580px;height:150px;border-radius:2px"><img decoding="async" src="assets/frontAB.webp" style="width:2289.5454545454545px;left:-1469.090909090909px;top:-559.090909090909px" alt=""></div><div class="cap" style="margin-top:10px">星辰笑脸灯带 · Starry Smile Light Bar</div></div>
+    <div data-a="up" style="--d:280;margin-top:34px"><div class="crop " style="width:580px;height:110px;border-radius:2px"><img decoding="async" src="assets/sideB.webp" style="width:1936px;left:-555.2631578947369px;top:-1024.7368421052631px" alt=""></div><div class="cap" style="margin-top:10px">侧身流光饰条 · Chroma Side Strip</div></div>
+    <div data-a="up" style="--d:360;display:flex;gap:20px;margin-top:34px">
+      <div><div class="crop " style="width:280px;height:200px;border-radius:2px"><img decoding="async" src="assets/sideB.webp" style="width:1800.6153846153845px;left:-53.84615384615384px;top:-508.46153846153845px" alt=""></div><div class="cap" style="margin-top:10px">透镜大灯 · 幻彩光圈</div></div>
+      <div><div class="crop " style="width:280px;height:200px;border-radius:2px"><img decoding="async" src="assets/frontAB.webp" style="width:3616.307692307692px;left:-1895.3846153846152px;top:-670px" alt=""></div><div class="cap" style="margin-top:10px">圆形后视镜</div></div>
+    </div>
+  </div>
+  <div class="ft"><span>Scheme B · Lighting</span><span class="pn">14 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg paper" id="p15">
+  <div class="abs" style="inset:0;background-image:linear-gradient(rgba(16,20,29,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(16,20,29,.04) 1px,transparent 1px);background-size:40px 40px"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>05 · Views</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:120px">
+    <div class="kicker gold" data-a="up">Scheme A · Orthographic Views</div>
+    <div class="t-m" data-a="up" style="--d:100;margin-top:14px">方案 A · 三视图</div>
+  </div>
+  <svg class="ov" width="1920" height="1080" data-a="up" style="--d:420"><g stroke="rgba(184,149,90,.65)" stroke-width="1">
+    <line x1="88" y1="870" x2="1832" y2="870"/>
+    <line x1="88" y1="359.06249999999994" x2="1832" y2="359.06249999999994" stroke-dasharray="4 6"/>
+    <line x1="57.609649122807014" y1="900" x2="485.9950657894737" y2="900"/><line x1="57.609649122807014" y1="894" x2="57.609649122807014" y2="906"/><line x1="485.9950657894737" y1="894" x2="485.9950657894737" y2="906"/><line x1="575.9950657894738" y1="900" x2="1351.7763157894738" y2="900"/><line x1="575.9950657894738" y1="894" x2="575.9950657894738" y2="906"/><line x1="1351.7763157894738" y1="894" x2="1351.7763157894738" y2="906"/><line x1="1441.7763157894738" y1="900" x2="1862.3903508771932" y2="900"/><line x1="1441.7763157894738" y1="894" x2="1441.7763157894738" y2="906"/><line x1="1862.3903508771932" y1="894" x2="1862.3903508771932" y2="906"/>
+  </g></svg>
+  <div class="shd" style="left:70.46121162280701px;top:847.44140625px;width:402.6822916666667px;height:42.61067708333334px"></div><img decoding="async" class="car " data-a="up" style="--d:150;left:57.609649122807014px;top:368.69791666666663px;width:428.3854166666667px" src="assets/frontA.webp" alt=""><div class="shd" style="left:599.2685032894738px;top:847.0078125px;width:729.234375px;height:43.42968750000001px"></div><img decoding="async" class="car " data-a="up" style="--d:250;left:575.9950657894738px;top:359.06249999999994px;width:775.78125px" src="assets/sideA.webp" alt=""><div class="shd" style="left:1454.3947368421054px;top:847.421052631579px;width:395.37719298245617px;height:42.64912280701755px"></div><img decoding="async" class="car " data-a="up" style="--d:350;left:1441.7763157894738px;top:368.24561403508767px;width:420.61403508771934px" src="assets/rearA.webp" alt="">
+  <div class="abs center" style="left:57.609649122807014px;width:428.3854166666667px;top:922px"><span class="t-xs">正视图</span><span class="lat" style="font-size:13px;letter-spacing:.24em;opacity:.5;margin-left:10px">FRONT</span></div><div class="abs center" style="left:575.9950657894738px;width:775.78125px;top:922px"><span class="t-xs">侧视图</span><span class="lat" style="font-size:13px;letter-spacing:.24em;opacity:.5;margin-left:10px">SIDE</span></div><div class="abs center" style="left:1441.7763157894738px;width:420.61403508771934px;top:922px"><span class="t-xs">后视图</span><span class="lat" style="font-size:13px;letter-spacing:.24em;opacity:.5;margin-left:10px">REAR</span></div>
+  <div class="abs cap" style="left:88px;top:335.06249999999994px">同一比例尺排布 · 造型比例示意，非工程尺寸</div>
+  <div class="ft"><span>Views · Scheme A</span><span class="pn">15 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg navy" id="p16">
+  <div class="abs" style="inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:40px 40px"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>05 · Views</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:120px">
+    <div class="kicker gold" data-a="up">Scheme B · Orthographic Views</div>
+    <div class="t-m" data-a="up" style="--d:100;margin-top:14px">方案 B · 三视图</div>
+  </div>
+  <svg class="ov" width="1920" height="1080" data-a="up" style="--d:420"><g stroke="rgba(217,190,138,.5)" stroke-width="1">
+    <line x1="88" y1="870" x2="1832" y2="870"/>
+    <line x1="88" y1="364.29824561403507" x2="1832" y2="364.29824561403507" stroke-dasharray="4 6"/>
+    <line x1="57.040844298245474" y1="900" x2="503.13459429824553" y2="900"/><line x1="57.040844298245474" y1="894" x2="57.040844298245474" y2="906"/><line x1="503.13459429824553" y1="894" x2="503.13459429824553" y2="906"/><line x1="593.1345942982455" y1="900" x2="1326.4679276315787" y2="900"/><line x1="593.1345942982455" y1="894" x2="593.1345942982455" y2="906"/><line x1="1326.4679276315787" y1="894" x2="1326.4679276315787" y2="906"/><line x1="1416.467927631579" y1="900" x2="1862.9591557017543" y2="900"/><line x1="1416.467927631579" y1="894" x2="1416.467927631579" y2="906"/><line x1="1862.9591557017543" y1="894" x2="1862.9591557017543" y2="906"/>
+  </g></svg>
+  <div class="shd" style="left:70.42365679824547px;top:847.44140625px;width:419.32812500000006px;height:42.61067708333334px"></div><img decoding="async" class="car " data-a="up" style="--d:150;left:57.040844298245474px;top:368.69791666666663px;width:446.09375000000006px" src="assets/frontB.webp" alt=""><div class="shd" style="left:615.1345942982455px;top:847.2434210526316px;width:689.3333333333334px;height:42.98464912280702px"></div><img decoding="async" class="car " data-a="up" style="--d:250;left:593.1345942982455px;top:364.29824561403507px;width:733.3333333333334px" src="assets/sideB.webp" alt=""><div class="shd" style="left:1429.8626644736842px;top:847.421052631579px;width:419.7017543859649px;height:42.64912280701755px"></div><img decoding="async" class="car " data-a="up" style="--d:350;left:1416.467927631579px;top:368.24561403508767px;width:446.49122807017545px" src="assets/rearB.webp" alt="">
+  <div class="abs center" style="left:57.040844298245474px;width:446.09375000000006px;top:922px"><span class="t-xs">正视图</span><span class="lat" style="font-size:13px;letter-spacing:.24em;opacity:.5;margin-left:10px">FRONT</span></div><div class="abs center" style="left:593.1345942982455px;width:733.3333333333334px;top:922px"><span class="t-xs">侧视图</span><span class="lat" style="font-size:13px;letter-spacing:.24em;opacity:.5;margin-left:10px">SIDE</span></div><div class="abs center" style="left:1416.467927631579px;width:446.49122807017545px;top:922px"><span class="t-xs">后视图</span><span class="lat" style="font-size:13px;letter-spacing:.24em;opacity:.5;margin-left:10px">REAR</span></div>
+  <div class="abs cap" style="left:88px;top:340.29824561403507px">同一比例尺排布 · 造型比例示意，非工程尺寸</div>
+  <div class="ft"><span>Views · Scheme B</span><span class="pn">16 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg cream" id="p17">
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>05 · Comparison</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:120px">
+    <div class="kicker gold" data-a="up">A / B · Front & Rear</div>
+    <div class="t-m" data-a="up" style="--d:100;margin-top:14px">前后对比</div>
+  </div>
+  <div class="abs" style="left:963.1839831268788px;top:260px;height:720px;width:1px;background:rgba(184,149,90,.6)"></div>
+  <div class="abs lat" style="left:88px;top:250px;font-size:14px;letter-spacing:.3em;opacity:.5">FRONT</div>
+  <div class="abs lat" style="left:1023.1839831268788px;top:250px;font-size:14px;letter-spacing:.3em;opacity:.5">REAR</div>
+  <div class="shd" style="left:99.09837092534588px;top:860.518816992744px;width:347.74895566083757px;height:36.79779012481702px"></div><img decoding="async" class="car " data-a="up" style="--d:150;left:88px;top:447.08482206097625px;width:369.9456975115294px" src="assets/frontA.webp" alt=""><div class="shd" style="left:529.5028460799898px;top:860.518816992744px;width:362.1239884784285px;height:36.79779012481702px"></div><img decoding="async" class="car " data-a="up" style="--d:240;left:517.9456975115294px;top:447.08482206097625px;width:385.23828561534947px" src="assets/frontB.webp" alt=""><div class="shd" style="left:1034.0810174240157px;top:860.5012399855193px;width:341.4404079769568px;height:36.83099113846348px"></div><img decoding="async" class="car " data-a="up" style="--d:330;left:1023.1839831268788px;top:446.6942219004297px;width:363.2344765712307px" src="assets/rearA.webp" alt=""><div class="shd" style="left:1457.9859059071662px;top:860.5012399855193px;width:362.4466478837769px;height:36.83099113846348px"></div><img decoding="async" class="car " data-a="up" style="--d:420;left:1446.4184596981095px;top:446.6942219004297px;width:385.58154030189036px" src="assets/rearB.webp" alt="">
+  <div class="abs center" style="left:68px;width:409.9456975115294px;top:916px">
+    <span class="lat gold" style="font-size:30px">A</span><div class="cap" style="margin-top:4px">前 · 幻彩中网 + 胶囊大灯</div></div><div class="abs center" style="left:497.9456975115294px;width:425.23828561534947px;top:916px">
+    <span class="lat gold" style="font-size:30px">B</span><div class="cap" style="margin-top:4px">前 · 星辰笑脸灯带</div></div><div class="abs center" style="left:1003.1839831268788px;width:403.2344765712307px;top:916px">
+    <span class="lat gold" style="font-size:30px">A</span><div class="cap" style="margin-top:4px">后 · 行李箱 + 琥珀反光片</div></div><div class="abs center" style="left:1426.4184596981095px;width:425.58154030189036px;top:916px">
+    <span class="lat gold" style="font-size:30px">B</span><div class="cap" style="margin-top:4px">后 · 浮雕 Y 标 · 简洁</div></div>
+  <div class="ft"><span>Comparison</span><span class="pn">17 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg ink" id="p18">
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>06 · Scenes</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:120px">
+    <div class="kicker gold" data-a="up">06 · Lifestyle Scenes</div>
+    <div class="t-m" data-a="up" style="--d:100;margin-top:14px">生活场景</div>
+  </div>
+  <div data-a="up" style="--d:200;position:absolute;left:88px;top:250px;width:581px;height:720px;overflow:hidden;background:linear-gradient(180deg,#F2E3C6 0%,#EACB9C 55%,#D9B287 100%)">
+      <div class="abs" style="left:150.5px;top:70px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,250,238,.95) 0%,rgba(255,250,238,.5) 45%,rgba(255,250,238,0) 70%)"></div>
+      <div class="abs" style="left:0;right:0;top:420px;height:190px;background:#B98B62;opacity:.25;clip-path:polygon(0 60%,12% 30%,22% 50%,35% 15%,48% 45%,60% 25%,74% 55%,86% 20%,100% 45%,100% 100%,0 100%)"></div>
+      <div class="abs" style="left:0;right:0;top:600px;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.1))"></div>
+      <div class="shd" style="left:69.60000000000002px;top:596.0703927492447px;width:441.7999999999999px;height:26.311480362537765px"></div><img decoding="async" class="car " style="left:55.50000000000003px;top:300.4531722054381px;width:469.99999999999994px" src="assets/sideA.webp" alt="">
+      <div class="abs" style="left:0;right:0;bottom:0;height:120px;background:linear-gradient(180deg,rgba(16,20,29,0),rgba(16,20,29,.55))"></div>
+      <div class="abs" style="left:28px;bottom:22px;right:28px;color:#fff">
+        <div style="display:flex;align-items:baseline;gap:12px"><span class="t-s" style="font-size:24px">梧桐街角</span><span class="it" style="opacity:.8;font-size:18px">Weekend Market</span></div>
+        <div class="p s" style="opacity:.85;margin-top:2px">周末去街角市集，行李箱里装满鲜花与面包。</div></div>
+    </div><div data-a="up" style="--d:320;position:absolute;left:690px;top:250px;width:581px;height:720px;overflow:hidden;background:linear-gradient(180deg,#BFD3F0 0%,#9DB9E6 50%,#E9D8BD 100%)">
+      <div class="abs" style="left:150.5px;top:70px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,250,238,.95) 0%,rgba(255,250,238,.5) 45%,rgba(255,250,238,0) 70%)"></div>
+      <div class="abs" style="left:0;right:0;top:420px;height:190px;background:#6F8DB8;opacity:.25;clip-path:polygon(0 60%,12% 30%,22% 50%,35% 15%,48% 45%,60% 25%,74% 55%,86% 20%,100% 45%,100% 100%,0 100%)"></div>
+      <div class="abs" style="left:0;right:0;top:600px;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.1))"></div>
+      <div class="shd" style="left:69.6px;top:595.4151016746412px;width:441.79999999999995px;height:27.5492523923445px"></div><img decoding="async" class="car " style="left:55.5px;top:285.89114832535887px;width:470px" src="assets/sideB.webp" alt="">
+      <div class="abs" style="left:0;right:0;bottom:0;height:120px;background:linear-gradient(180deg,rgba(16,20,29,0),rgba(16,20,29,.55))"></div>
+      <div class="abs" style="left:28px;bottom:22px;right:28px;color:#fff">
+        <div style="display:flex;align-items:baseline;gap:12px"><span class="t-s" style="font-size:24px">海岸慢行</span><span class="it" style="opacity:.8;font-size:18px">Coastal Drive</span></div>
+        <div class="p s" style="opacity:.85;margin-top:2px">沿着海边公路，吹着风慢慢开。</div></div>
+    </div><div data-a="up" style="--d:440;position:absolute;left:1292px;top:250px;width:581px;height:720px;overflow:hidden;background:linear-gradient(180deg,#E7E1EE 0%,#CFC6DD 55%,#B7ACC9 100%)">
+      <div class="abs" style="left:150.5px;top:70px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,250,238,.95) 0%,rgba(255,250,238,.5) 45%,rgba(255,250,238,0) 70%)"></div>
+      <div class="abs" style="left:0;right:0;top:420px;height:190px;background:#8E80A8;opacity:.25;clip-path:polygon(0 60%,12% 30%,22% 50%,35% 15%,48% 45%,60% 25%,74% 55%,86% 20%,100% 45%,100% 100%,0 100%)"></div>
+      <div class="abs" style="left:0;right:0;top:600px;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.1))"></div>
+      <div class="shd" style="left:157.96px;top:595.15px;width:265.08px;height:28.05px"></div><img decoding="async" class="car " style="left:149.5px;top:280px;width:282px" src="assets/frontA.webp" alt="">
+      <div class="abs" style="left:0;right:0;bottom:0;height:120px;background:linear-gradient(180deg,rgba(16,20,29,0),rgba(16,20,29,.55))"></div>
+      <div class="abs" style="left:28px;bottom:22px;right:28px;color:#fff">
+        <div style="display:flex;align-items:baseline;gap:12px"><span class="t-s" style="font-size:24px">校门口的约定</span><span class="it" style="opacity:.8;font-size:18px">School Run</span></div>
+        <div class="p s" style="opacity:.85;margin-top:2px">放学铃响，风雨无阻的接送。</div></div>
+    </div>
+  <div class="ft"><span>Scenes</span><span class="pn">18 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg paper" id="p19">
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>06 · Summary</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs" style="left:88px;top:120px">
+    <div class="kicker gold" data-a="up">06 · Summary</div>
+    <div class="t-m" data-a="up" style="--d:100;margin-top:14px">方案对比</div>
+  </div>
+  <div data-a="fade" style="--d:150"><div class="shd" style="left:360.6px;top:382.5522658610272px;width:394.8px;height:23.512386706948643px"></div><img decoding="async" class="car " style="left:348px;top:118.38368580060421px;width:420.00000000000006px" src="assets/sideA.webp" alt=""><div class="shd" style="left:1101.910574018127px;top:382.6798219112737px;width:373.19798590130915px;height:23.27144750092755px"></div><img decoding="async" class="car " style="left:1090px;top:121.21826469497px;width:397.01913393756297px" src="assets/sideB.webp" alt=""></div>
+  <div class="abs" style="left:88px;top:420px;width:1744px">
+    <div style="display:grid;grid-template-columns:260px 1fr 1fr;border-bottom:1px solid rgba(16,20,29,.3);padding-bottom:14px">
+      <span></span><span><span class="lat gold" style="font-size:26px">A</span><span class="t-xs" style="margin-left:12px">经典旅行 Classic Voyage</span></span>
+      <span><span class="lat gold" style="font-size:26px">B</span><span class="t-xs" style="margin-left:12px">幻彩律动 Chroma Pulse</span></span></div>
+    <div data-a="up" style="--d:200;display:grid;grid-template-columns:260px 1fr 1fr;border-bottom:1px solid rgba(16,20,29,.12);padding:17px 0">
+      <span class="cap" style="letter-spacing:.2em;opacity:.7;font-size:14px">风格定位</span><span class="p s" style="opacity:.85">经典优雅 · 旅行复古</span><span class="p s" style="opacity:.85">潮流年轻 · 光感科技</span></div><div data-a="up" style="--d:260;display:grid;grid-template-columns:260px 1fr 1fr;border-bottom:1px solid rgba(16,20,29,.12);padding:17px 0">
+      <span class="cap" style="letter-spacing:.2em;opacity:.7;font-size:14px">前脸</span><span class="p s" style="opacity:.85">胶囊复古大灯 + 幻彩 / 木纹中网（A1 / A2）</span><span class="p s" style="opacity:.85">透镜「眼睛」+ 星辰笑脸幻彩灯带</span></div><div data-a="up" style="--d:320;display:grid;grid-template-columns:260px 1fr 1fr;border-bottom:1px solid rgba(16,20,29,.12);padding:17px 0">
+      <span class="cap" style="letter-spacing:.2em;opacity:.7;font-size:14px">侧身</span><span class="p s" style="opacity:.85">干邑木纹饰条 + Beautiful 手写字标</span><span class="p s" style="opacity:.85">幻彩流光饰条</span></div><div data-a="up" style="--d:380;display:grid;grid-template-columns:260px 1fr 1fr;border-bottom:1px solid rgba(16,20,29,.12);padding:17px 0">
+      <span class="cap" style="letter-spacing:.2em;opacity:.7;font-size:14px">尾部</span><span class="p s" style="opacity:.85">亚麻行李箱 + 琥珀反光片</span><span class="p s" style="opacity:.85">浮雕 Y 标 · 干净利落</span></div><div data-a="up" style="--d:440;display:grid;grid-template-columns:260px 1fr 1fr;border-bottom:1px solid rgba(16,20,29,.12);padding:17px 0">
+      <span class="cap" style="letter-spacing:.2em;opacity:.7;font-size:14px">个性化</span><span class="p s" style="opacity:.85">中网点阵屏 DIY 图案 · 双中网可选</span><span class="p s" style="opacity:.85">灯效主题与色彩可调</span></div><div data-a="up" style="--d:500;display:grid;grid-template-columns:260px 1fr 1fr;border-bottom:1px solid rgba(16,20,29,.12);padding:17px 0">
+      <span class="cap" style="letter-spacing:.2em;opacity:.7;font-size:14px">核心人群</span><span class="p s" style="opacity:.85">都市女性 · 银发一族</span><span class="p s" style="opacity:.85">年轻女性 · 年轻家庭</span></div>
+    <div data-a="up" style="--d:620;margin-top:34px;display:flex;gap:28px;align-items:flex-start">
+      <div class="hair g" style="width:60px;margin-top:16px;flex:none"></div>
+      <div class="p" style="opacity:.85;max-width:1300px"><b style="font-weight:600">产品组合建议：</b>两套方案共享同一车身与双色体系，仅在灯光、饰条与尾部配件上区隔——A 塑造品牌的「经典复古」基调，B 以光效吸引更年轻的潮流用户，以低改动成本覆盖两类审美。</div>
+    </div>
+  </div>
+  <div class="ft"><span>Summary</span><span class="pn">19 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+<section class="pg navy" id="p20">
+  <div class="abs" style="left:560px;top:380px;width:800px;height:800px;border-radius:50%;border:1px solid rgba(217,190,138,.3)"></div>
+  <div class="abs" style="left:460px;top:280px;width:1000px;height:1000px;border-radius:50%;border:1px solid rgba(217,190,138,.14)"></div>
+  <div class="hd"><span><b>YADEA</b><i class="bar"></i>Thank You</span><span>DAFAR DESIGN · 大方工业设计</span></div>
+  <div class="abs center" style="left:0;right:0;top:170px">
+    <div class="it" data-a="up" style="font-size:80px;color:var(--gold-l)">Thank you.</div>
+    <div class="t-s" data-a="up" style="--d:100;margin-top:14px;letter-spacing:.3em;font-weight:400">谢谢观看</div>
+    <div class="cap" data-a="up" style="--d:160;margin-top:16px;color:#EEE8DD">YADEA MODERN · 新时尚复古三轮篷车设计提案 · DAFAR DESIGN 大方工业设计</div>
+  </div>
+  <div class="shd" style="left:743.1163636363636px;top:950.7px;width:433.7672727272727px;height:45.900000000000006px"></div><img decoding="async" class="car " data-a="up" style="--d:200;left:729.2727272727273px;top:435px;width:461.45454545454544px" src="assets/frontA.webp" alt="">
+  <div class="ft"><span>Yadea × Dafar Design</span><span class="pn">20 <span style="opacity:.45">/ 20</span></span></div>
+</section>
+</div>
+<script>
+(() => {
+  const PDF = "yadea-modern-proposal.pdf";
+  const q = new URLSearchParams(location.search), B = document.body;
+  const pages = [...document.querySelectorAll('.pg')];
+  if (q.has('p')) {                       // 截图模式：只显示第 p 页
+    B.classList.add('shot');
+    pages.forEach((p, i) => { if (i + 1 !== +q.get('p')) p.style.display = 'none'; });
+    return;
+  }
+  if (q.has('print')) { B.classList.add('print'); return; }
+  B.classList.add('live');
+  // 横向视口：整页完整落在屏幕内（手机横屏 / 桌面）；竖屏手机：按宽度铺满
+  const fit = () => {
+    const port = innerHeight > innerWidth;
+    const z = port ? innerWidth / 1920 : Math.min(innerWidth / 1920, (innerHeight - 16) / 1080);
+    document.documentElement.style.setProperty('--z', z);
+    B.classList.toggle('port', port);
+  };
+  fit(); addEventListener('resize', fit);
+  // 浮动条：页码 + PDF 下载；竖屏提示横屏
+  const ui = document.createElement('div'); ui.id = 'ui';
+  ui.innerHTML = '<span id="pc">01 / ' + pages.length + '</span><a href="' + PDF + '" download>PDF 下载</a>';
+  B.appendChild(ui);
+  const tip = document.createElement('div'); tip.id = 'tip'; tip.textContent = '横屏观看效果更佳 · 双指可放大';
+  B.appendChild(tip); setTimeout(() => tip.classList.add('off'), 4500);
+  const pc = ui.querySelector('#pc');
+  const tick = () => {
+    const vh = innerHeight;
+    let cur = 0, best = -1;
+    pages.forEach((p, i) => { const r = p.getBoundingClientRect();
+      const vis = Math.min(r.bottom, vh) - Math.max(r.top, 0); if (vis > best) { best = vis; cur = i; }
+      if (p.classList.contains('on')) return;
+      if (r.top < vh * .8 && r.bottom > vh * .2) p.classList.add('on'); });
+    const t = String(cur + 1).padStart(2, '0') + ' / ' + pages.length; if (pc.textContent !== t) pc.textContent = t;
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+  addEventListener('keydown', (e) => {
+    const k = e.key; if (!['ArrowDown', 'ArrowRight', 'PageDown', ' ', 'ArrowUp', 'ArrowLeft', 'PageUp'].includes(k)) return;
+    e.preventDefault();
+    const z = +getComputedStyle(document.documentElement).getPropertyValue('--z'),
+      cur = pages.findIndex((p) => p.getBoundingClientRect().bottom > innerHeight / 2);
+    const nx = Math.max(0, Math.min(pages.length - 1, cur + (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(k) ? -1 : 1)));
+    scrollTo({ top: pages[nx].getBoundingClientRect().top + scrollY - (innerHeight - 1080 * z) / 2, behavior: 'smooth' });
+  });
+})();
+</script></body></html>
